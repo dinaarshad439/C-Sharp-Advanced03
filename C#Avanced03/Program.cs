@@ -96,47 +96,89 @@ namespace C_Avanced03
 
             #region (Q3) Phone Book
 
-            Dictionary<string, string> Contacts = new Dictionary<string, string>();
+            // Dictionary<string, string> Contacts = new Dictionary<string, string>();
 
-            // 1. Create a Collection with 4 contacts (name -> phone number)
-            // 2. Add a new contact using [] syntax (add or update)
-            Contacts["Sara"] = "0111222333";
-            Contacts["Ali"] = "01222333444";
-            Contacts["Ahmed"] = "01333444555";
-            Contacts["Mona"] = "01444555666";
+            // // 1. Create a Collection with 4 contacts (name -> phone number)
+            // // 2. Add a new contact using [] syntax (add or update)
+            // Contacts["Sara"] = "0111222333";
+            // Contacts["Ali"] = "01222333444";
+            // Contacts["Ahmed"] = "01333444555";
+            // Contacts["Mona"] = "01444555666";
 
-            // 3. Try adding a duplicate using .Add() - catch the exception and print the error
-            try
-            {
-                Contacts.Add("Sara", "0111222333");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
+            // // 3. Try adding a duplicate using .Add() - catch the exception and print the error
+            // try
+            // {
+            //     Contacts.Add("Sara", "0111222333");
+            // }
+            // catch (Exception ex)
+            // {
+            //     Console.WriteLine($"Error: {ex.Message}");
+            // }
 
-            // 4. Try adding a duplicate using .TryAdd() - print whether it succeeded
-            Console.WriteLine($"TryAdd succeeded?{Contacts.TryAdd("Ahmed", "01333444555")}");
+            // // 4. Try adding a duplicate using .TryAdd() - print whether it succeeded
+            // Console.WriteLine($"TryAdd succeeded?{Contacts.TryAdd("Ahmed", "01333444555")}");
 
-            // 5. Search for a contact that doesn't exist
-           Console.WriteLine("------Search for contact-------");
-           bool check= Contacts.ContainsKey("Laila");
-           Console.WriteLine($"Does Laila exist? {check}");
+            // // 5. Search for a contact that doesn't exist
+            //Console.WriteLine("------Search for contact-------");
+            //bool check= Contacts.ContainsKey("Laila");
+            //Console.WriteLine($"Does Laila exist? {check}");
 
-            // 6. Get a contact with a fallback of "Not Found"
-            Console.WriteLine(Contacts.GetValueOrDefault("Laila", "Not Found"));
+            // // 6. Get a contact with a fallback of "Not Found"
+            // Console.WriteLine(Contacts.GetValueOrDefault("Laila", "Not Found"));
 
-            // 7. Print all Keys on one line, then all Values on another line
-            Console.WriteLine("\n-----Contacts--------");
-            foreach (var key in Contacts.Keys)
-            {
-                Console.WriteLine($"Name: {key}");
-            }
+            // // 7. Print all Keys on one line, then all Values on another line
+            // Console.WriteLine("\n-----Contacts--------");
+            // foreach (var key in Contacts.Keys)
+            // {
+            //     Console.WriteLine($"Name: {key}");
+            // }
 
-            foreach (var value in Contacts.Values)
-            {
-                Console.WriteLine($"Phone Number: {value}");
-            }
+            // foreach (var value in Contacts.Values)
+            // {
+            //     Console.WriteLine($"Phone Number: {value}");
+            // }
+
+
+            #endregion
+
+            #region (Q4) Unique Email Validator
+            // 1 & 2 HashSet with case-insensitive comparer
+            HashSet<string> set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            set.Add("ahmed@test.com");
+            set.Add("AHMED@test.com");
+            set.Add("sara@test.com");
+            set.Add("Sara@Test.Com");
+
+            //3. Print Count — how many are actually stored? Explain why. 
+            Console.WriteLine($"How Many Emails Stored: {set.Count}");
+            // Because Hashset store only unique numbers not duplicated ones and here we ignore case sensitive.
+
+            //4. Create two sets: Set A = {1,2,3,4,5} and Set B = {4,5,6,7,8} 
+            HashSet<int> A = new HashSet<int> { 1, 2, 3, 4, 5 };
+            HashSet<int> B = new HashSet<int> { 4, 5, 6, 7, 8 };
+
+            //5. Print the result of: UnionWith, IntersectWith, ExceptWith 
+            Console.WriteLine("\n-------Union with--------\n");
+            HashSet<int> union = new HashSet<int>(A);
+            union.UnionWith(B);
+            foreach(int u in union) {Console.WriteLine($"UnionWith Result:{u}"); }
+
+            Console.WriteLine("\n-------Intersect with--------\n");
+            HashSet<int> Intersect = new HashSet<int>(A);
+            Intersect.IntersectWith(B);
+            foreach(int x in Intersect) {Console.WriteLine($"IntersectWith Result:{x}"); }
+
+            Console.WriteLine("\n-------Except with--------\n");
+            HashSet<int> Except = new HashSet<int>(A);
+            Except.ExceptWith(B);
+            foreach(int e in Except) {Console.WriteLine($"ExceptWith Result:{e}");}
+
+            //6. Use IsSubsetOf to check if {1,2} is a subset of Set A
+            Console.WriteLine("\n-------Subset of--------\n");
+            HashSet<int> c= new HashSet<int> { 1, 2 };
+            Console.WriteLine($"Is [1,2] subset of A:{c.IsSubsetOf(A)}");
+
 
 
             #endregion
