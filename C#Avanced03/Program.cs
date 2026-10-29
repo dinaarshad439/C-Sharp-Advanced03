@@ -188,35 +188,66 @@ namespace C_Avanced03
 
             #region (Q5) Print Queue Simulator 
 
-            Queue<string> queue=new Queue<string>();
+            //Queue<string> queue=new Queue<string>();
 
-            queue.Enqueue("Report.pdf");
-            queue.Enqueue("Invoice.pdf");
-            queue.Enqueue("Letter.docx");
-            queue.Enqueue("Resume.pdf");
-            queue.Enqueue("Photo.jpg");
+            //queue.Enqueue("Report.pdf");
+            //queue.Enqueue("Invoice.pdf");
+            //queue.Enqueue("Letter.docx");
+            //queue.Enqueue("Resume.pdf");
+            //queue.Enqueue("Photo.jpg");
 
-            // 2.Use Peek to see which document will print next(without removing)
-            Console.WriteLine("----------Queue elements----------");
-            foreach (var item in queue) { Console.WriteLine(item); }
+            //// 2.Use Peek to see which document will print next(without removing)
+            //Console.WriteLine("----------Queue elements----------");
+            //foreach (var item in queue) { Console.WriteLine(item); }
 
-            Console.WriteLine($"\nHow Many elements in Queue:{queue.Count}");
+            //Console.WriteLine($"\nHow Many elements in Queue:{queue.Count}");
 
-            // 2. Use Peek to see which document will print next (without removing)
-            Console.WriteLine($"\nTop element:{queue.Peek()}");
+            //// 2. Use Peek to see which document will print next (without removing)
+            //Console.WriteLine($"\nTop element:{queue.Peek()}");
 
-            // 3. Process the queue: Dequeue each document and print "Printing: [name]"
-            Console.WriteLine("\n---------Processing Queue(Dequeue)---------");
-            while (queue.Count > 0)
-            {
-                string doc = queue.Dequeue();
-                Console.WriteLine($"Printing: [{doc}]");
-            }
+            //// 3. Process the queue: Dequeue each document and print "Printing: [name]"
+            //Console.WriteLine("\n---------Processing Queue(Dequeue)---------");
+            //while (queue.Count > 0)
+            //{
+            //    string doc = queue.Dequeue();
+            //    Console.WriteLine($"Printing: [{doc}]");
+            //}
 
-            // 4.Try TryDequeue on the now-empty queue - what happens?
-            Console.WriteLine($"\nIs Queue Filled: {queue.TryDequeue(out string? result)}");
+            //// 4.Try TryDequeue on the now-empty queue - what happens?
+            //Console.WriteLine($"\nIs Queue Contain elements: {queue.TryDequeue(out string? result)}");
 
             #endregion
+
+            #region (Q6) Browser History (Undo) 
+
+            // Create a Stack<string> for browser history and push 5 URLs
+            Stack<string> stack = new Stack<string>();
+
+            stack.Push("google.com");
+            stack.Push("github.com");
+            stack.Push("stackoverflow.com");
+            stack.Push("youtube.com");
+            stack.Push("claude.ai");
+
+            //2. Use Peek to see the current page (top of stack) 
+            Console.WriteLine($"Top page in stack:{stack.Peek()}");
+
+            //3. Press "back" 3 times using Pop — print each page you leave
+            Console.WriteLine("\n--------process pop 3 times--------");
+            for (int i = 0; i < 3; i++)
+            {
+                string Page = stack.Pop();
+                Console.WriteLine($"Leaving page: {Page}");
             }
+
+            //4. Print the current page after going back 
+            Console.WriteLine($"\nCurrent Page: {stack.Peek()}\n");
+
+            //5. Try TryPop on an empty stack — what happens?
+            Console.WriteLine($"is stack contain elements:{stack.TryPop(out string? result)}");
+
+
+            #endregion
+        }
     }
 }
