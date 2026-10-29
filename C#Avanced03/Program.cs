@@ -245,6 +245,7 @@ namespace C_Avanced03
 
             //5. Try TryPop on an empty stack — what happens?
             Console.WriteLine($"is stack contain elements:{stack.TryPop(out string? result)}");
+            //it will return true because there still pages we only pop 3 pages out of 5 pages
 
 
             #endregion
