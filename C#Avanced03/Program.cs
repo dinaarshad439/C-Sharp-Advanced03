@@ -1,4 +1,6 @@
-﻿using System.Numerics;
+﻿using System.Drawing;
+using System.Numerics;
+using System.Reflection.Metadata;
 
 namespace C_Avanced03
 {
@@ -142,46 +144,79 @@ namespace C_Avanced03
             #endregion
 
             #region (Q4) Unique Email Validator
-            // 1 & 2 HashSet with case-insensitive comparer
-            HashSet<string> set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-            set.Add("ahmed@test.com");
-            set.Add("AHMED@test.com");
-            set.Add("sara@test.com");
-            set.Add("Sara@Test.Com");
+            //// 1 & 2 HashSet with case-insensitive comparer
+            //HashSet<string> set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
-            //3. Print Count — how many are actually stored? Explain why. 
-            Console.WriteLine($"How Many Emails Stored: {set.Count}");
-            // Because Hashset store only unique numbers not duplicated ones and here we ignore case sensitive.
+            //set.Add("ahmed@test.com");
+            //set.Add("AHMED@test.com");
+            //set.Add("sara@test.com");
+            //set.Add("Sara@Test.Com");
 
-            //4. Create two sets: Set A = {1,2,3,4,5} and Set B = {4,5,6,7,8} 
-            HashSet<int> A = new HashSet<int> { 1, 2, 3, 4, 5 };
-            HashSet<int> B = new HashSet<int> { 4, 5, 6, 7, 8 };
+            ////3. Print Count — how many are actually stored? Explain why. 
+            //Console.WriteLine($"How Many Emails Stored: {set.Count}");
+            //// Because Hashset store only unique numbers not duplicated ones and here we ignore case sensitive.
 
-            //5. Print the result of: UnionWith, IntersectWith, ExceptWith 
-            Console.WriteLine("\n-------Union with--------\n");
-            HashSet<int> union = new HashSet<int>(A);
-            union.UnionWith(B);
-            foreach(int u in union) {Console.WriteLine($"UnionWith Result:{u}"); }
+            ////4. Create two sets: Set A = {1,2,3,4,5} and Set B = {4,5,6,7,8} 
+            //HashSet<int> A = new HashSet<int> { 1, 2, 3, 4, 5 };
+            //HashSet<int> B = new HashSet<int> { 4, 5, 6, 7, 8 };
 
-            Console.WriteLine("\n-------Intersect with--------\n");
-            HashSet<int> Intersect = new HashSet<int>(A);
-            Intersect.IntersectWith(B);
-            foreach(int x in Intersect) {Console.WriteLine($"IntersectWith Result:{x}"); }
+            ////5. Print the result of: UnionWith, IntersectWith, ExceptWith 
+            //Console.WriteLine("\n-------Union with--------\n");
+            //HashSet<int> union = new HashSet<int>(A);
+            //union.UnionWith(B);
+            //foreach(int u in union) {Console.WriteLine($"UnionWith Result:{u}"); }
 
-            Console.WriteLine("\n-------Except with--------\n");
-            HashSet<int> Except = new HashSet<int>(A);
-            Except.ExceptWith(B);
-            foreach(int e in Except) {Console.WriteLine($"ExceptWith Result:{e}");}
+            //Console.WriteLine("\n-------Intersect with--------\n");
+            //HashSet<int> Intersect = new HashSet<int>(A);
+            //Intersect.IntersectWith(B);
+            //foreach(int x in Intersect) {Console.WriteLine($"IntersectWith Result:{x}"); }
 
-            //6. Use IsSubsetOf to check if {1,2} is a subset of Set A
-            Console.WriteLine("\n-------Subset of--------\n");
-            HashSet<int> c= new HashSet<int> { 1, 2 };
-            Console.WriteLine($"Is [1,2] subset of A:{c.IsSubsetOf(A)}");
+            //Console.WriteLine("\n-------Except with--------\n");
+            //HashSet<int> Except = new HashSet<int>(A);
+            //Except.ExceptWith(B);
+            //foreach(int e in Except) {Console.WriteLine($"ExceptWith Result:{e}");}
+
+            ////6. Use IsSubsetOf to check if {1,2} is a subset of Set A
+            //Console.WriteLine("\n-------Subset of--------\n");
+            //HashSet<int> c= new HashSet<int> { 1, 2 };
+            //Console.WriteLine($"Is [1,2] subset of A:{c.IsSubsetOf(A)}");
 
 
 
             #endregion
-        }
+
+            #region (Q5) Print Queue Simulator 
+
+            Queue<string> queue=new Queue<string>();
+
+            queue.Enqueue("Report.pdf");
+            queue.Enqueue("Invoice.pdf");
+            queue.Enqueue("Letter.docx");
+            queue.Enqueue("Resume.pdf");
+            queue.Enqueue("Photo.jpg");
+
+            // 2.Use Peek to see which document will print next(without removing)
+            Console.WriteLine("----------Queue elements----------");
+            foreach (var item in queue) { Console.WriteLine(item); }
+
+            Console.WriteLine($"\nHow Many elements in Queue:{queue.Count}");
+
+            // 2. Use Peek to see which document will print next (without removing)
+            Console.WriteLine($"\nTop element:{queue.Peek()}");
+
+            // 3. Process the queue: Dequeue each document and print "Printing: [name]"
+            Console.WriteLine("\n---------Processing Queue(Dequeue)---------");
+            while (queue.Count > 0)
+            {
+                string doc = queue.Dequeue();
+                Console.WriteLine($"Printing: [{doc}]");
+            }
+
+            // 4.Try TryDequeue on the now-empty queue - what happens?
+            Console.WriteLine($"\nIs Queue Filled: {queue.TryDequeue(out string? result)}");
+
+            #endregion
+            }
     }
 }
