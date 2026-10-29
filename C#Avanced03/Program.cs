@@ -4,7 +4,62 @@
     {
         static void Main(string[] args)
         {
-            
+            #region (Q1) Student Grade Manager
+
+            // 1. Create a Collection with these grades
+            Console.WriteLine("-------Elements-------------");
+            List<int> grades = new List<int>()
+            {
+                85,92,78,95,88,70,100, 65
+            };
+
+            // 2. Print the collection, Count, first and last grade
+            foreach (int grade in grades) 
+            {
+                Console.WriteLine(grade); 
+            }
+           
+            Console.WriteLine($"Grades Count:{grades.Count}" );
+            Console.WriteLine($"First element:{grades[0]}");
+            Console.WriteLine($"Last element:{grades.Last<int>()}");
+
+            // 3. Sort the grades ascending, then print
+
+            Console.WriteLine("\n-------SortedElements(ascendingly)-------------");
+            grades.Sort();
+            foreach (int grade in grades)
+            {
+                Console.WriteLine(grade);
+            }
+
+            // 4. Get the first grade above 90
+            int FirstGradeAbove90 = grades.Find(g => g > 90);
+            Console.WriteLine($"\nFirst Grade above 90 is {FirstGradeAbove90}\n");
+
+            // 5. Get all grades below 75 (failing grades)
+            Console.WriteLine("-------Grades below 75-------------");
+            List<int> FailingGrades = grades.FindAll(g => g < 75);
+            foreach (int grade in FailingGrades) { Console.WriteLine(grade); }
+
+            // 6. Remove all failing grades (below 75)
+            Console.WriteLine("-------Remove Grades below 75-------------");
+            grades.RemoveAll(g => g < 75);
+            foreach (int grade in grades) { Console.WriteLine(grade); }
+
+            // 7. Check if any grade equals 100
+            bool check= grades.Contains(100);
+            Console.WriteLine($"\ndid the list contains 100: {check}");
+
+            // 8.Create a List<string> where each grade becomes "Grade: X"
+            Console.WriteLine("\n------List Grades in string----------");
+            List<string> GradeStrings = grades.Select(g => $"Grades:{g.ToString()}").ToList();
+            foreach(string gradeString in GradeStrings) { Console.WriteLine(gradeString); }
+
+
+
+
+
+            #endregion
         }
     }
 }
